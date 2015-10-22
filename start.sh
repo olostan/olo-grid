@@ -1,0 +1,1 @@
+goapp serve frontend/app.yaml cell/cell0x0.yaml cell/cell0x1.yaml cell/cell0x2.yaml cell/cell0x3.yaml cell/cell1x0.yaml cell/cell1x1.yaml cell/cell1x2.yaml cell/cell1x3.yaml cell/cell2x0.yaml cell/cell2x1.yaml cell/cell2x2.yaml cell/cell2x3.yaml cell/cell3x0.yaml cell/cell3x1.yaml cell/cell3x2.yaml cell/cell3x3.yaml

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grid Test</title>
+    <style>
+td { width: 40px;height: 40px;border:solid 1px black;transition: all 0.7s;}
+tr.starter td { background-color: aqua;border-radius: 20px;cursor: pointer;}
+td.c2 {background-color: red;}
+td.c1 {background-color: yellow;}
+
+    </style>
+</head>
+<body>
+    <div>Grid Test:</div>
+    <table id="table">
+        <tbody>
+        <tr class="starter"><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+    </table>
+<script>
+    function getData() {
+        window.fetch('/status').then((r)=> r.json()).then(applyTable)
+        .then((r) => setTimeout(getData,300));
+    }
+    getData();
+    [].forEach.call(document.querySelectorAll("tr.starter td"),function(td,idx) {
+         td.addEventListener('click',(c) => window.fetch('/call/'+idx));
+    });
+    function applyTable(t) {
+        var table = document.getElementById("table").children[0];
+        for (var r=0;r<4;r++) {
+            var row = table.children[1+r];
+            for (var c =0;c<4;c++) {
+                row.children[c].className= "c"+getClassFor(c,r);
+            }
+        }
+        function getClassFor(c,r) {
+            var e = t.filter((e)=> e.k =="/cell,cell"+c+"x"+r)[0];
+            if (!e) return 0;
+            console.log("f:",e);
+            return e.v;
+        }
+    }
+</script>
+</body>
+</html>
